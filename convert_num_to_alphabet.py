@@ -6,18 +6,18 @@ def num2a(num):
     if num <= 26:
         return chr(96 + num)
     elif num % 26 == 0:
-        return num2alpha(num // 26-1) + chr(122)
+        return num2a(num // 26-1) + chr(122)
     else:
-        return num2alpha(num // 26) + chr(96 + num % 26)
+        return num2a(num // 26) + chr(96 + num % 26)
 
 #大文字
 def num2A(num):
     if num<=26:
         return chr(64+num)
     elif num%26==0:
-        return num2alpha(num//26-1)+chr(90)
+        return num2a(num//26-1)+chr(90)
     else:
-        return num2alpha(num//26)+chr(64+num%26)
+        return num2a(num//26)+chr(64+num%26)
 
 #参考
 #https://tanuhack.com/num2alpha-alpha2num/
