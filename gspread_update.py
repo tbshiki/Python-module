@@ -9,8 +9,8 @@ import re
 import time
 
 #数字とアルファベットを変換
-import convert_alphabet_capital_to_num
-import convert_num_to_alphabet_capital
+import convert_alphabet_to_num
+import convert_num_to_alphabet
 
 #https://tanuhack.com/gspread-dataframe/
 #指定セルから連想配列を貼り付け
@@ -25,10 +25,10 @@ def free(worksheet, list, startcell):
 
     # 展開を開始するセルからA1セルの差分
     row_diff = start_cell_row - 1
-    col_diff = convert_alphabet_capital_to_num.alpha2num(start_cell_col) - convert_alphabet_capital_to_num.alpha2num('A')
+    col_diff = convert_alphabet_to_num.A2num(start_cell_col) - convert_alphabet_to_num.A2num('A')
 
     # DataFrameのヘッダーと中身をスプレッドシートのA2セルから展開する
-    cell_list = worksheet.range(start_cell + ':' + convert_num_to_alphabet_capital.num2alpha(col_lastnum + col_diff) + str(row_lastnum + row_diff))
+    cell_list = worksheet.range(start_cell + ':' + convert_num_to_alphabet.num2A(col_lastnum + col_diff) + str(row_lastnum + row_diff))
     for cell in cell_list:
         val = df.iloc[cell.row - 2][cell.col - 1]
         cell.value = val
