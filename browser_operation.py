@@ -13,7 +13,7 @@ class clickC():
     def __init__(self, driver, element):
 
         #クリック前のハンドル数を取得
-        handle = len(driver.window_handles)
+        handles = len(driver.window_handles)
 
         actions = ActionChains(driver)
 
@@ -28,7 +28,12 @@ class clickC():
         actions.click(element)
         actions.perform()
 
-        WebDriverWait(driver, 30).until(lambda a: len(driver.window_handles) > handle)
+        try:
+            # 新しいタブが開くのを最大30秒まで待機
+            WebDriverWait(driver, 30).until(lambda a: len(a.window_handles) > handles)
+        except TimeoutException:
+            print('新しいタブが開かずタイムアウトしました')
+            sys.exit(1)
 
         time.sleep(1)
 
