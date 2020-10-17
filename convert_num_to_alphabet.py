@@ -12,12 +12,12 @@ def num2a(num):
 
 #大文字
 def num2A(num):
-    if num<=26:
-        return chr(64+num)
-    elif num%26==0:
-        return num2a(num//26-1)+chr(90)
+    if num <= 26:
+        return chr(64 + num)
+    elif num % 26 == 0:
+        return num2A(num // 26-1) + chr(90)
     else:
-        return num2a(num//26)+chr(64+num%26)
+        return num2A(num // 26) + chr(64 + num % 26)
 
 #参考
 #https://tanuhack.com/num2alpha-alpha2num/
