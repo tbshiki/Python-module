@@ -6,8 +6,10 @@
 import pandas as pd
 import gspread
 import re
-import time
+import sys
 
+# モジュールのあるパスを追加
+sys.path.append('../module')
 #数字とアルファベットを変換
 import convert_alphabet_to_num
 import convert_num_to_alphabet
@@ -27,19 +29,18 @@ def free(worksheet, list, startcell):
     row_diff = start_cell_row - 1
     col_diff = convert_alphabet_to_num.A2num(start_cell_col) - convert_alphabet_to_num.A2num('A')
 
-    # DataFrameのヘッダーと中身をスプレッドシートのA2セルから展開する
+    # DataFrameのヘッダーと中身をスプレッドシートの任意のセルから展開する
     cell_list = worksheet.range(start_cell + ':' + convert_num_to_alphabet.num2A(col_lastnum + col_diff) + str(row_lastnum + row_diff))
     for cell in cell_list:
         val = df.iloc[cell.row - 2][cell.col - 1]
         cell.value = val
     worksheet.update_cells(cell_list)
-    time.sleep(1)
 
 #指定セル範囲へ配列を貼り付け
-def row(worksheet, data_list, startcell, lastcell):
+#gspred.just(worksheet, list, startcell, lastcell)
+def just(worksheet, list, startcell, lastcell,):
     cell_list = worksheet.range(startcell + ":" + lastcell)
 
-    for cell, item in zip(cell_list,data_list):
+    for cell, item in zip(cell_list,list):
             cell.value = item
     worksheet.update_cells(cell_list)
-    time.sleep(1)
